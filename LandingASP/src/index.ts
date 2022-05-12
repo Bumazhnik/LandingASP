@@ -1,6 +1,8 @@
 
 import "./css/main.css";
 import * as $ from "jquery";
+const isAutoSliding = true;
+const sliderDelay = 5000;
 $(function () {
     $(".btn").click(function () {
         $(".submenu").slideToggle(500);
@@ -23,15 +25,15 @@ document.querySelectorAll(".carousel").forEach(carousel => {
         buttons.forEach(button => button.classList.remove("carousel__button--selected"));
     }
     function chooseSlide(slide: number) {
+        disableAll();
         items[slide].classList.add("carousel__item--selected");
         buttons[slide].classList.add("carousel__button--selected");
     }
     function autoSlide(nextSlide: number) {
         if (nextSlide >= items.length)
             nextSlide = 0;
-        disableAll();
         chooseSlide(nextSlide);
-        window.setTimeout(autoSlide, 5000, nextSlide + 1);
+        window.setTimeout(autoSlide, sliderDelay, nextSlide + 1);
     }
 
     buttons.forEach((button, i) => {
@@ -41,5 +43,8 @@ document.querySelectorAll(".carousel").forEach(carousel => {
             button.classList.add("carousel__button--selected");
         });
     });
-    autoSlide(0);
+    if (isAutoSliding)
+        autoSlide(0);
+    else
+        chooseSlide(0)
 });
