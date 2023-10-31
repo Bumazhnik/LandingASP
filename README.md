@@ -1,5 +1,5 @@
 # LandingASP
-A simple landing written in ASP.NET MVC 6 and TypeScript
+A simple landing written in ASP.NET 6 MVC and TypeScript
 ## Prerequisites
 .Net, npm is required for this to work
 ## Build
